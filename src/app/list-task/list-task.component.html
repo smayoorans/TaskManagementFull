@@ -1,0 +1,42 @@
+<div class="d-flex">
+  <div class="p-2 flex-fill">
+    <input type="text" class="form-control" placeholder="Search Task..." [(ngModel)]="searchText">
+  </div>
+
+  <div class="p-2 flex-fill">
+    <button type="button" class="btn btn-dark" [routerLink]="['/add-task']">
+      New Task
+    </button>
+  </div>
+</div>
+
+<table class="table table-responsive table-bordered">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Due Date </th>
+      <th>Priority</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks | filterTask: searchText">
+      <td>{{task.id}}</td>
+      <td>{{task.title}}</td>
+      <td>{{task.description}}</td>
+      <td>{{task.dueDate | date: 'dd-MMM-yyyy'}}</td>
+      <td [ngClass]="{'text-danger': task.priority == 'High',
+          'text-warning': task.priority == 'Low'}">{{task.priority}}</td>
+      <td>
+
+        <button type="button" class="btn btn-primary me-3" (click)="onEdit(task.id)">
+          <i class="bi bi-pencil"></i></button>
+
+        <button type="button" class="btn btn-danger" (click)="onDelete(task.id)">
+          <i class="bi bi-trash"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
