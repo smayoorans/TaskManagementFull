@@ -33,6 +33,11 @@ export class UserAddComponent implements OnInit {
       email: [''],
       phone: [''],
       password: [''],
+      address: this.fb.group({
+        addressLine1: ['', [Validators.required]],
+        addressLine2: [''],
+        city: ['']
+      })
     });
   }
 

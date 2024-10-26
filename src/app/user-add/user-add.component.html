@@ -1,42 +1,66 @@
-<div class="container shadow-lg p-3 mb-5 m-3 bg-body-tertiary rounded d-flex justify-content-center" style="width: 65%;">
-  <div class="row align-items-center">
-    <div class="col-12 mx-auto">
-      <h1>{{!isEditMode ? 'Add New User' : 'Update User'}}</h1>
-      <div class="">
-        <div class="">
-          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" formControlName="name">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="text" class="form-control" id="email" formControlName="email">
-            </div>
+<h3>{{!isEditMode ? 'Add New User' : 'Update User'}}</h3>
+<hr>
 
-            <div class="mb-3">
-              <label for="phone" class="form-label">Phone</label>
-              <input type="text" class="form-control" id="phone" formControlName="phone">
-            </div>
-
-            <div class="mb-3">
-              <label for="phone" class="form-label">Password</label>
-              <input type="text" class="form-control" id="phone" formControlName="password">
-            </div>
-
-            <div class="mb-3 mx-auto">
-              <button type="submit" [disabled]="userForm.invalid"
-                class="btn btn-primary me-2">Submit</button>
-
-              <button type="button" (click)="close()"
-                class="btn btn-secondary">Cancel</button>
-
-            </div>
-          </form>
-
-
-        </div>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
       </div>
-    </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email">
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="phone" formControlName="phone">
+      </div>
+
+      <div class="mb-3">
+        <label for="phone" class="form-label">Password</label>
+        <input type="text" class="form-control" id="phone" formControlName="password">
+      </div>
+
+
+      <div formGroupName="address">
+
+        <div class="mb-3">
+          <label for="addressLine1" class="form-label">Address Line 1</label>
+          <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1">
+          <small class="text-danger"
+          *ngIf="userForm.get('address.addressLine1')?.invalid && userForm.get('address.addressLine1')?.touched">
+            Address line1 is required
+          </small>
+        </div>
+
+        <div class="mb-3">
+          <label for="addressLine1" class="form-label">Address Line 2</label>
+          <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2" >
+        </div>
+
+        <div class="mb-3">
+          <label for="city" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" formControlName="city">
+        </div>
+
+      </div>
+
+      <!-- Address -->
+
+
+      <div class="mb-3 mx-auto">
+        <button type="submit" [disabled]="userForm.invalid"
+          class="btn btn-primary me-2">Submit</button>
+
+        <button type="button" (click)="close()"
+          class="btn btn-secondary">Cancel</button>
+
+      </div>
+    </form>
   </div>
+
+  <div class="col"></div>
 </div>
+

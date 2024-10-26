@@ -18,6 +18,7 @@
       <th>Description</th>
       <th>Due Date </th>
       <th>Priority</th>
+      <th>assignee</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -30,11 +31,14 @@
       <td [ngClass]="{'text-danger': task.priority == 'High',
           'text-warning': task.priority == 'Low'}">{{task.priority}}</td>
       <td>
+        {{task.assignee?.name}}
+      </td>
+      <td>
 
-        <button type="button" class="btn btn-primary me-3" (click)="onEdit(task.id)">
+        <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(task.id)">
           <i class="bi bi-pencil"></i></button>
 
-        <button type="button" class="btn btn-danger" (click)="onDelete(task.id)">
+        <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(task.id)">
           <i class="bi bi-trash"></i></button>
       </td>
     </tr>

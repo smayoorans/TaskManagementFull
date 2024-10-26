@@ -36,4 +36,12 @@ export interface User {
   email: string;
   phone: string;
   password: string;
+  address?: Address;
+}
+
+export interface Address {
+  id: number;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
 }

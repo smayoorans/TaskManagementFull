@@ -1,45 +1,42 @@
-<div class="container shadow-lg p-3 mb-5 m-3 bg-body-tertiary rounded d-flex justify-content-center" style="width: 65%;">
-  <div class="row align-items-center">
-    <div class="col-12 mx-auto">
-      <div class="">
-        <div class="">
-          <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-              <label for="title" class="form-label">Title</label>
-              <input type="text" class="form-control" id="title" formControlName="title">
-            </div>
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <input type="text" class="form-control" id="description" formControlName="description">
-            </div>
-
-            <div class="mb-3">
-              <label for="email" class="form-label">Due Date</label>
-              <input type="date" class="form-control" id="dueDate" formControlName="dueDate">
-            </div>
-
-            <div class="mb-3">
-              <label for="priority" class="form-label">Priority</label>
-              <select class="form-control" id="priority" formControlName="priority">
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-              </select>
-            </div>
-
-            <div class="mb-3 mx-auto">
-              <button type="submit" [disabled]="taskForm.invalid"
-                class="btn btn-primary me-2">Submit</button>
-
-              <button type="button" (click)="close()"
-                class="btn btn-secondary">Cancel</button>
-
-            </div>
-          </form>
-
-
-        </div>
-      </div>
-    </div>
+<h3>Add New Task</h3>
+<hr>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" formControlName="title">
   </div>
-</div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control" id="description" formControlName="description">
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Due Date</label>
+    <input type="date" class="form-control" id="dueDate" formControlName="dueDate">
+  </div>
+
+  <div class="mb-3">
+    <label for="priority" class="form-label">Priority</label>
+    <select class="form-control" id="priority" formControlName="priority">
+      <option value="High">High</option>
+      <option value="Medium">Medium</option>
+      <option value="Low">Low</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="assignee" class="form-label">Assignee</label>
+    <select class="form-control" id="assignee" formControlName="assigneeId">
+      <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+    </select>
+  </div>
+
+  <div class="mb-3 mt-4 mx-auto">
+    <button type="submit" [disabled]="taskForm.invalid"
+      class="btn btn-primary me-2">Submit</button>
+
+    <button type="button" (click)="close()"
+      class="btn btn-secondary">Cancel</button>
+
+  </div>
+</form>

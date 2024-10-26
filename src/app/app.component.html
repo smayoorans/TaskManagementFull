@@ -21,8 +21,7 @@
   </nav>
 </header>
 
-
-<main style="padding: 57px 0px 0px 0px">
+<main style="padding: 57px 0px 0px 0px; background-color: rgb(230, 226, 226) !important;">
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; background-color: rgb(49, 46, 46) !important;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <i class="bi bi-list-task" style="font-size: 1.5rem; color: cornflowerblue; padding-right: 5px;"></i>
@@ -32,19 +31,19 @@
 
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a routerLink="/#" class="nav-link text-white" routerLinkActive="active" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Home
         </a>
       </li>
       <li>
-        <a href="/tasks" class="nav-link text-white">
+        <a routerLink="/tasks" class="nav-link text-white" routerLinkActive="active">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          Task
+          Tasks
         </a>
       </li>
       <li>
-        <a href="/users" class="nav-link text-white">
+        <a routerLink="/users" class="nav-link text-white" routerLinkActive="active">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Users
         </a>
@@ -57,7 +56,7 @@
   </div>
   <div class="b-example-divider"></div>
 
-  <section style="width: 100%; padding-top: 20px; padding-left: 20px;">
+  <section style="width: 100%; overflow-y: scroll;" class="shadow p-4 m-4 bg-white rounded">
     <router-outlet></router-outlet>
   </section>
 
