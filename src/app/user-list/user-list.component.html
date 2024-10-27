@@ -23,6 +23,7 @@
         <th>Phone</th>
         <th>Password</th>
         <th>Address</th>
+        <th>Task Count</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -38,6 +39,7 @@
           {{user.address?.addressLine2}},
           {{user.address?.city}}
         </td>
+        <td>{{user.tasks.length}}</td>
         <td>
 
           <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(user.id)">

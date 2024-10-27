@@ -34,6 +34,7 @@ export class UserAddComponent implements OnInit {
       phone: [''],
       password: [''],
       address: this.fb.group({
+        id: [''],
         addressLine1: ['', [Validators.required]],
         addressLine2: [''],
         city: ['']
@@ -60,6 +61,7 @@ export class UserAddComponent implements OnInit {
 
     if (this.isEditMode) {
       user.id = this.userId;
+      user.address.userId =  this.userId;
       this.userService.updateUser(user, this.userId).subscribe(data => {
         this.toastr.success("User is updated successfully.", "Success");
         this.router.navigate(['/users']);

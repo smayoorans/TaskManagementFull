@@ -24,10 +24,11 @@
     </select>
   </div>
 
+
   <div class="mb-3">
-    <label for="assignee" class="form-label">Assignee</label>
-    <select class="form-control" id="assignee" formControlName="assigneeId">
-      <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+    <label for="Assignee" class="form-label">Assignee</label>
+    <select class="form-control" id="Assignee" formControlName="assigneeId">
+      <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
     </select>
   </div>
 

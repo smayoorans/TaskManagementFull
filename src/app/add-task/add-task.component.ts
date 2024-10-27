@@ -12,12 +12,11 @@ import { User, UserService } from '../user.service';
 })
 export class AddTaskComponent implements OnInit {
 
-
-  taskForm: FormGroup;
   users: User[] = [];
 
-  constructor(private fb: FormBuilder, private taskService: TaskService,
-    private userService: UserService,
+  taskForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private taskService: TaskService, private userService: UserService,
     private router: Router, private toastr: ToastrService) {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required]],
@@ -31,7 +30,7 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers().subscribe(data => {
       this.users = data;
-    });
+    })
   }
 
   onSubmit() {

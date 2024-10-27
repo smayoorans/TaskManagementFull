@@ -7,6 +7,9 @@
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input type="text" class="form-control" id="name" formControlName="name">
+        <small class="text-danger" *ngIf="userForm.get('name')?.invalid">
+          Name is required field!
+        </small>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
@@ -23,33 +26,27 @@
         <input type="text" class="form-control" id="phone" formControlName="password">
       </div>
 
-
+      <h3>Address Information</h3>
+      <hr>
       <div formGroupName="address">
-
         <div class="mb-3">
-          <label for="addressLine1" class="form-label">Address Line 1</label>
+          <label for="addressLine1" class="form-label">Address Line1</label>
           <input type="text" class="form-control" id="addressLine1" formControlName="addressLine1">
-          <small class="text-danger"
-          *ngIf="userForm.get('address.addressLine1')?.invalid && userForm.get('address.addressLine1')?.touched">
-            Address line1 is required
+          <small class="text-danger" *ngIf="userForm.get('address.addressLine1')?.invalid">
+            Address Line1 is required field!
           </small>
         </div>
 
         <div class="mb-3">
-          <label for="addressLine1" class="form-label">Address Line 2</label>
-          <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2" >
+          <label for="addressLine2" class="form-label">Address Line2</label>
+          <input type="text" class="form-control" id="addressLine2" formControlName="addressLine2">
         </div>
 
         <div class="mb-3">
           <label for="city" class="form-label">City</label>
           <input type="text" class="form-control" id="city" formControlName="city">
         </div>
-
       </div>
-
-      <!-- Address -->
-
-
       <div class="mb-3 mx-auto">
         <button type="submit" [disabled]="userForm.invalid"
           class="btn btn-primary me-2">Submit</button>
@@ -63,4 +60,3 @@
 
   <div class="col"></div>
 </div>
-
