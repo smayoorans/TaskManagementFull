@@ -13,6 +13,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { TaskEditComponent } from './task-edit/task-edit.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -32,8 +34,9 @@ import { UserAddComponent } from './user-add/user-add.component';
     FormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    BsDatepickerModule
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

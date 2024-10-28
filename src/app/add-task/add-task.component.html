@@ -1,43 +1,79 @@
 <h3>Add New Task</h3>
 <hr>
+
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-  <div class="mb-3">
-    <label for="title" class="form-label">Title</label>
-    <input type="text" class="form-control" id="title" formControlName="title">
-  </div>
-  <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
-    <input type="text" class="form-control" id="description" formControlName="description">
-  </div>
+  <div class="row">
 
-  <div class="mb-3">
-    <label for="email" class="form-label">Due Date</label>
-    <input type="date" class="form-control" id="dueDate" formControlName="dueDate">
-  </div>
-
-  <div class="mb-3">
-    <label for="priority" class="form-label">Priority</label>
-    <select class="form-control" id="priority" formControlName="priority">
-      <option value="High">High</option>
-      <option value="Medium">Medium</option>
-      <option value="Low">Low</option>
-    </select>
-  </div>
+    <div class="col">
 
 
-  <div class="mb-3">
-    <label for="Assignee" class="form-label">Assignee</label>
-    <select class="form-control" id="Assignee" formControlName="assigneeId">
-      <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
-    </select>
-  </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" autocomplete="off" class="form-control" id="description" formControlName="description">
+      </div>
 
-  <div class="mb-3 mt-4 mx-auto">
-    <button type="submit" [disabled]="taskForm.invalid"
-      class="btn btn-primary me-2">Submit</button>
+      <div class="mb-3">
+        <label for="email" class="form-label">Due Date</label>
+        <input type="text" bsDatepicker [bsConfig]="{ isAnimated: true }" autocomplete="off" class="form-control"
+          id="dueDate" formControlName="dueDate">
+      </div>
 
-    <button type="button" (click)="close()"
-      class="btn btn-secondary">Cancel</button>
+      <div class="mb-3">
+        <label for="priority" class="form-label">Priority</label>
+        <select class="form-control" id="priority" formControlName="priority">
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
 
+
+      <div class="mb-3">
+        <label for="Assignee" class="form-label">Assignee</label>
+        <select class="form-control" id="Assignee" formControlName="assigneeId">
+          <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
+        </select>
+      </div>
+
+      <div class="mb-3 mt-4 mx-auto">
+        <button type="submit" [disabled]="taskForm.invalid"
+          class="btn btn-primary me-2">Submit</button>
+
+        <button type="button" (click)="close()"
+          class="btn btn-secondary">Cancel</button>
+
+      </div>
+
+
+
+    </div>
+
+    <div class="col">
+      <h3>Add Checklist</h3>
+      <hr>
+      <div formArrayName="checkLists">
+        <div class="row" *ngFor="let checkList of myCheckLists.controls; let i = index">
+          <div class="" [formGroupName]="i">
+            <div class="row">
+              <div class="col form-check">
+                <input type="checkbox" class="form-check-input" formControlName="isDone">
+                <input type="text" autocomplete="off" class="form-control" id="description"formControlName="name">
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-danger" (click)="removeChecklist(i)">X</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button *ngIf="myCheckLists.length < 3" type="button" class="btn btn-success"
+        (click)="addChecklist()"> + Add</button>
+      </div>
+    </div>
   </div>
 </form>

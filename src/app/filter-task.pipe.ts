@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Task } from './task.service';
+import { Task } from './models/models';
 
 @Pipe({
   name: 'filterTask'

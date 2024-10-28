@@ -39,9 +39,39 @@
         <button type="button" class="btn btn-primary me-3 btn-sm" (click)="onEdit(task.id)">
           <i class="bi bi-pencil"></i></button>
 
-        <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(task.id)">
+        <button type="button" class="btn btn-danger btn-sm" (click)="openModal(template1, task.id)">
           <i class="bi bi-trash"></i></button>
       </td>
     </tr>
   </tbody>
 </table>
+
+
+<ng-template #template1>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Confirmation 1</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <p>Do you want to delete this task?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+
+
+<ng-template #template2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete Confirmation 2</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <p>Do you want to delete this task?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>

@@ -14,6 +14,7 @@ export class UserAddComponent implements OnInit {
   userId: number = 0;
   userForm: FormGroup;
   isEditMode = false;
+  addressId = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +35,6 @@ export class UserAddComponent implements OnInit {
       phone: [''],
       password: [''],
       address: this.fb.group({
-        id: [''],
         addressLine1: ['', [Validators.required]],
         addressLine2: [''],
         city: ['']
@@ -47,6 +47,7 @@ export class UserAddComponent implements OnInit {
 
     if (this.isEditMode) {
       this.userService.getUser(this.userId).subscribe(data => {
+        this.addressId = Number(data.address?.id);
         this.userForm.patchValue(data);
       }, (error) => {
         this.toastr.warning("User is not found!: " + error.error.title);
@@ -60,8 +61,11 @@ export class UserAddComponent implements OnInit {
     let user = this.userForm.value;
 
     if (this.isEditMode) {
+
       user.id = this.userId;
       user.address.userId =  this.userId;
+      user.address.id = this.addressId;
+
       this.userService.updateUser(user, this.userId).subscribe(data => {
         this.toastr.success("User is updated successfully.", "Success");
         this.router.navigate(['/users']);

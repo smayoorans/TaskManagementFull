@@ -1,41 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from './user.service';
+import { Task } from './models/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
+  url = 'https://localhost:7048/api/TaskItems';
+
   constructor(private http: HttpClient) { }
 
   getTasks() {
-    return this.http.get<Task[]>('https://localhost:7008/api/TaskItems');
+    return this.http.get<Task[]>(this.url);
   }
 
   createTask(task: Task) {
-    return this.http.post('https://localhost:7008/api/TaskItems', task);
+    return this.http.post(this.url, task);
   }
 
   deleteTask(taskId: number) {
-    return this.http.delete('https://localhost:7008/api/TaskItems/' + taskId);
+    return this.http.delete(this.url + '/' + taskId);
   }
 
   getTask(taskId: number) {
-    return this.http.get<Task>('https://localhost:7008/api/TaskItems/' + taskId);
+    return this.http.get<Task>(this.url + '/' + taskId);
   }
 
   updateTask(task: Task, taskId: number) {
-    return this.http.put('https://localhost:7008/api/TaskItems/' + taskId, task);
+    return this.http.put(this.url + '/' + taskId, task);
   }
 
-}
-
-export interface Task {
-  id: number;
-  title: string;
-  description: string;
-  dueDate: string;
-  priority: string;
-  assignee?: User;
 }

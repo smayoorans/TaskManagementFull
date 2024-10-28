@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { User, UserService } from '../user.service';
+import { UserService } from '../user.service';
+import { User } from '../models/models';
 
 @Component({
   selector: 'app-user-list',
