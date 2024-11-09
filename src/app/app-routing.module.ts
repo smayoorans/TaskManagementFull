@@ -6,16 +6,43 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
-  { path: 'tasks', component: ListTaskComponent},
-  { path: 'users', component: UserListComponent},
 
-  { path: 'add-task', component: AddTaskComponent},
-  { path: 'add-user', component: UserAddComponent},
+  {
+    path: '',
+    component: BlankLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      }
+    ]
+  },
 
-  { path: 'edit-task/:id', component: TaskEditComponent},
-  { path: 'edit-user/:id', component: UserAddComponent},
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    children: [
+      { path: 'tasks', component: ListTaskComponent },
+      { path: 'users', component: UserListComponent },
+
+      { path: 'add-task', component: AddTaskComponent },
+      { path: 'add-user', component: UserAddComponent },
+
+      { path: 'edit-task/:id', component: TaskEditComponent },
+      { path: 'edit-user/:id', component: UserAddComponent },
+    ]
+  },
+
 ];
 
 @NgModule({

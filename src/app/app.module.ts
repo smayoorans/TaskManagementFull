@@ -15,6 +15,10 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { LoginComponent } from './components/login/login.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     FilterTaskPipe,
     TaskEditComponent,
     UserListComponent,
-    UserAddComponent
+    UserAddComponent,
+    LoginComponent,
+    BlankLayoutComponent,
+    AdminLayoutComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

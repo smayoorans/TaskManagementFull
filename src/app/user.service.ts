@@ -1,15 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './models/models';
+import { LoginRequest } from './components/login/login.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  url = 'https://localhost:7048/api/Users';
+  url = 'https://localhost:7008/api/Users';
 
   constructor(private http: HttpClient) { }
+
+  login(loginRequest: LoginRequest) {
+    return this.http.post(this.url + '/login', loginRequest, {
+      responseType: 'text'
+    });
+  }
 
   getUsers() {
     return this.http.get<User[]>(this.url);
