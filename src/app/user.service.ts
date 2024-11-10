@@ -18,6 +18,14 @@ export class UserService {
     });
   }
 
+  isLoggedIn() {
+    if(localStorage.getItem("Token")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getUsers() {
     return this.http.get<User[]>(this.url);
   }

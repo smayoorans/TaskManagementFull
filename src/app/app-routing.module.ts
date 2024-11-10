@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthGuard } from './auth.guard';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
 
@@ -17,6 +19,10 @@ const routes: Routes = [
     path: '',
     component: BlankLayoutComponent,
     children: [
+      {
+        path: '',
+        component: LandingComponent
+      },
       {
         path: 'login',
         component: LoginComponent
@@ -31,6 +37,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminLayoutComponent,
+    canActivate: [AuthGuard] ,
     children: [
       { path: 'tasks', component: ListTaskComponent },
       { path: 'users', component: UserListComponent },

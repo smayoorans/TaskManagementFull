@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { jwtDecode } from "jwt-decode";
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,8 @@ export class LoginComponent implements OnInit {
 
   login: LoginRequest;
 
-  constructor(private userService: UserService, private router: Router) {
-    this.login = { email : '', password: ''};
+  constructor(private userService: UserService, private router: Router, private toastr: ToastrService) {
+    this.login = { email: '', password: '' };
   }
 
   ngOnInit(): void {
@@ -21,7 +23,16 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.userService.login(this.login).subscribe(data => {
-        this.router.navigate(['/admin/tasks']);
+
+      localStorage.setItem("Token", data);
+
+      const userDetails: any = jwtDecode(data);
+
+      localStorage.setItem("Name", userDetails.Name);
+
+      this.router.navigate(['/admin/tasks']);
+    }, error => {
+      this.toastr.error(error.error);
     });
   }
 }

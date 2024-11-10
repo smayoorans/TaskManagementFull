@@ -14,7 +14,8 @@
         </ul>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <span class="text-white">{{name}}</span>
+          <button class="btn btn-secondary" type="button" (click)="logout()">Logout</button>
         </form>
       </div>
     </div>
@@ -37,13 +38,13 @@
         </a>
       </li>
       <li>
-        <a routerLink="/tasks" class="nav-link text-white" routerLinkActive="active">
+        <a routerLink="/admin/tasks" class="nav-link text-white" routerLinkActive="active">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
           Tasks
         </a>
       </li>
       <li>
-        <a routerLink="/users" class="nav-link text-white" routerLinkActive="active">
+        <a routerLink="/admin/users" class="nav-link text-white" routerLinkActive="active">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
           Users
         </a>
