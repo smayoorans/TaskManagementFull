@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ListTaskComponent } from './list-task/list-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +15,13 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UserAddComponent } from './user-add/user-add.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { LoginComponent } from './components/login/login.component';
+import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LandingComponent } from './landing/landing.component';
+import { MyInterceptor } from './interceptors/my-interceptor.service';
+import { HasRoleDirective } from './has-role.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +31,13 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     FilterTaskPipe,
     TaskEditComponent,
     UserListComponent,
-    UserAddComponent
+    UserAddComponent,
+    LoginComponent,
+    BlankLayoutComponent,
+    AdminLayoutComponent,
+    RegisterComponent,
+    LandingComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
@@ -36,7 +49,9 @@ import { BsModalService } from 'ngx-bootstrap/modal';
     ToastrModule.forRoot(), // ToastrModule added
     BsDatepickerModule
   ],
-  providers: [BsModalService],
+  providers: [BsModalService,
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

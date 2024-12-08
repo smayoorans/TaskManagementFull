@@ -1,10 +1,10 @@
 <div class="d-flex">
-  <div class="p-2 flex-fill">
+  <div class="p-2 flex-fill" *appHasRole="'Standard'">
     <input type="text" class="form-control" placeholder="Search Task..." [(ngModel)]="searchText">
   </div>
 
-  <div class="p-2 flex-fill">
-    <button type="button" class="btn btn-dark" [routerLink]="['/add-task']">
+  <div class="p-2 flex-fill" *appHasRole="'Admin'">
+    <button type="button" class="btn btn-dark" [routerLink]="['/admin/add-task']">
       New Task
     </button>
   </div>
