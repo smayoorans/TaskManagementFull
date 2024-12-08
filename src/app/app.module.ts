@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ListTaskComponent } from './list-task/list-task.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +20,8 @@ import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.compon
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LandingComponent } from './landing/landing.component';
+import { MyInterceptor } from './interceptors/my-interceptor.service';
+import { HasRoleDirective } from './has-role.directive';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { LandingComponent } from './landing/landing.component';
     BlankLayoutComponent,
     AdminLayoutComponent,
     RegisterComponent,
-    LandingComponent
+    LandingComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,9 @@ import { LandingComponent } from './landing/landing.component';
     ToastrModule.forRoot(), // ToastrModule added
     BsDatepickerModule
   ],
-  providers: [BsModalService],
+  providers: [BsModalService,
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

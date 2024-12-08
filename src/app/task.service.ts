@@ -12,7 +12,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   getTasks() {
-    return this.http.get<Task[]>(this.url);
+    return this.http.get<Task[]>(this.url,);
   }
 
   createTask(task: Task) {

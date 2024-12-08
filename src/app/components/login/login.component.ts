@@ -28,7 +28,10 @@ export class LoginComponent implements OnInit {
 
       const userDetails: any = jwtDecode(data);
 
+      console.log(userDetails);
+
       localStorage.setItem("Name", userDetails.Name);
+      localStorage.setItem("Role", userDetails.Role);
 
       this.router.navigate(['/admin/tasks']);
     }, error => {

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AdminLayoutComponent implements OnInit {
 
   name = '';
+
   constructor(private router: Router) {
 
   }
